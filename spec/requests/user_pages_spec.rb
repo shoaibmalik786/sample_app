@@ -8,13 +8,7 @@ describe User do
   end
 
   subject { @user }
-  .
-  .
-  .
   it { should respond_to(:authenticate) }
-  .
-  .
-  .
   describe "with a password that's too short" do
     before { @user.password = @user.password_confirmation = "a" * 5 }
     it { should be_invalid }
@@ -34,5 +28,9 @@ describe User do
       it { should_not == user_for_invalid_password }
       specify { user_for_invalid_password.should be_false }
     end
+    describe "remember token" do
+    before { @user.save }
+    its(:remember_token) { should_not be_blank }
+  end
   end
 end
